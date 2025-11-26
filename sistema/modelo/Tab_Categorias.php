@@ -27,7 +27,7 @@ class Tab_Categorias extends Modelos
         $query = "INSERT INTO categorias (categoria) VALUES (:categoria)";
 
         $stmt = Conexao::getInstancia()->prepare($query);
-        $stmt->bindValue(':produto', $categoria['nova_categoria'], \PDO::PARAM_STR);
+        $stmt->bindValue(':categoria', $categoria['nova_categoria'], \PDO::PARAM_STR);
         $stmt->execute();
     }
 
