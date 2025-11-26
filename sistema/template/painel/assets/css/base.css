@@ -56,6 +56,8 @@ body {
 
     width: 380px;
     height: 100%;
+
+    gap: 20px;
 }
 
 .titulo1 {
@@ -80,5 +82,5 @@ body {
     position: fixed;
     bottom: 0px;
     font-size: 14px;
-    min-width: 350px;
+    width: 100%;
 }

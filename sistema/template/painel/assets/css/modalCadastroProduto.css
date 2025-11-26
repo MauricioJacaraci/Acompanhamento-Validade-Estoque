@@ -123,6 +123,34 @@
     align-items: center;
 }
 
+.categoria {
+    background-color: #000000;
+    border-radius: 8px;
+    padding-left: 10px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    width: 94%;
+    gap: 5px;
+}
+.label-categoria {
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 12px;
+    flex-basis: 40%;
+    border-radius: 5px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.placeholder-categoria {
+    font-size: 12px;
+    flex-basis: 60%;
+    border-radius: 5px;
+    height: 100%;
+    border: 1px solid black;
+}
+
 .infoProduto2 {
     background-color: #000000;
     width: 94%;
@@ -160,6 +188,7 @@
     padding-left: 10px;
     flex-basis: 60%;
 }
+
 
 .botoes1 {
     display: flex;

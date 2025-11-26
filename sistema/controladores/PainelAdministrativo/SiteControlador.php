@@ -52,7 +52,11 @@ class SiteControlador extends Controlador
         
         // Verifica se a variável $produto existe
         if (!empty($produto)) {            
-            (new Tab_Produtos())->cadastrarProduto($produto);
+            // (new Tab_Produtos())->cadastrarProduto($produto);
+            echo '<pre>';
+            print_r($produto);
+            echo '</pre>';
+            exit;
         }
 
         // Redireciona de volta para a rota 'index'
