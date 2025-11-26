@@ -136,9 +136,9 @@
 .container2 {
     background-color: var(--branco);
     width: 100%;
-    padding: 10px 0px 10px 0px;
-    border-top-left-radius: 20px ;
-    border-top-right-radius: 20px;
+    padding: 0px 0px 0px 0px;
+    /* border-top-left-radius: 20px ;
+    border-top-right-radius: 20px; */
 
     flex-basis: 77%;
 
