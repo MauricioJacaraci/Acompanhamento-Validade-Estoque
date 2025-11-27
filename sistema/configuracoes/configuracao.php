@@ -22,7 +22,7 @@ define('DATA_ATUAL_BANCO', date('Y/m/d', $now));
 define('DB_SERVIDOR', 'localhost');
 define('DB_USUARIO', 'root');
 define('DB_SENHA', '');
-define('DB_NOME_DO_BANCO', 'controle_validade_lider_distribuidora');
+define('DB_NOME_DO_BANCO', 'validade');
 define('DB_PORTA', '3306');
 
 
@@ -33,7 +33,7 @@ define('URL_SITE', 'Acompanhamento-Validade-Estoque/');
 define('URL_DESENVOLVIMENTO', 'http://localhost/Acompanhamento-Validade-Estoque');
 
 // url de produção
-define('URL_PRODUCAO', 'http://10.0.0.102/Acompanhamento-Validade-Estoque');
+define('URL_PRODUCAO', 'http://192.168.1.8/Acompanhamento-Validade-Estoque');
 
 // nome do site, geralmente para colocar no nome da pagina
 define('NOME_SITE', 'Controle de Validade');

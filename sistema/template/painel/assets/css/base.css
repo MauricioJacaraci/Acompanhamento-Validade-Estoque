@@ -64,16 +64,20 @@ header>.titulo1 {
 section {
     background-color: var(--branco);
     height: 87%;
-    width: 380px;
+    width: 95%;
+    max-width: 100%;
     overflow-y: auto;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
+}
+@media screen and (min-width: 600px) {
+    section {
+        width: 400px;
+    }
 }
 
 footer {
@@ -103,6 +107,13 @@ footer>.botoes>.btn-abrir>.fa-chart-bar,
 footer>.botoes>.btn-abrir>.fa-pen-to-square{
     font-size: 35px;
     color: white;
+}
+@media screen and (min-width: 600px) {
+    footer>.botoes>.btn-abrir>.fa-chart-bar,
+    footer>.botoes>.btn-abrir>.fa-pen-to-square {
+        font-size: 25px;
+        color: white;
+    }
 }
 footer>.direitos {
     font-size: 8px;

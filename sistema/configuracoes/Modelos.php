@@ -124,7 +124,50 @@ class Modelos
             return null;
         }
     }
-    //------------------------------------------------------------------------------------------------------------
+    public function resultadoArray(bool $todos = false): array|null
+    {
+        try {
+            if (empty($this->query)) {
+                throw new \Exception("A consulta não foi definida. Use o método buscar() antes de resultadoArray().");
+            }
+
+            $sql = $this->query . ($this->ordem ?? '') . ($this->limite ?? '') . ($this->offset ?? '');
+
+            $stmt = Conexao::getInstancia()->prepare($sql);
+            $stmt->execute($this->parametros ?? []);
+
+            if (!$stmt->rowCount()) {
+                return null;
+            }
+
+            // Usa o mesmo FETCH_CLASS, mas converte os dados internos ($dados) em array
+            if ($todos) {
+                $dados = $stmt->fetchAll(\PDO::FETCH_CLASS, static::class);
+                $resultado = [];
+
+                foreach ($dados as $item) {
+                    if (isset($item->dados)) {
+                        $resultado[] = (array) $item->dados;
+                    } else {
+                        $resultado[] = (array) $item;
+                    }
+                }
+
+                return $resultado;
+            }
+
+            $item = $stmt->fetchObject(static::class);
+
+            if (!$item) {
+                return null;
+            }
+
+            return isset($item->dados) ? (array) $item->dados : (array) $item;
+        } catch (\PDOException $ex) {
+            $this->erro = $ex;
+            return null;
+        }
+    }
 
 
 

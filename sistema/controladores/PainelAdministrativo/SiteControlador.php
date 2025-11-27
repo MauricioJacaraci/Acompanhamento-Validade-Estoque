@@ -28,19 +28,55 @@ class SiteControlador extends Controlador
     {
 
         
-        $resultado = (new Tab_Produtos())->buscarTodas()->ordem('data_validade ASC')->resultado(true);
+        $produtos = (new Tab_Produtos())->buscarTodas()->ordem('data_validade ASC')->resultado(true);
+        $categorias = (new Tab_Categorias())->buscarTodas()->ordem('categoria ASC')->resultadoArray(true);
 
-        if($resultado){
-            foreach ($resultado as $key => $value) {
-                $resultado[$key]['dias_restantes'] = (strtotime($value['data_validade']) - strtotime(date('Y-m-d'))) / (60 * 60 * 24);
+        if($produtos){
+            foreach ($produtos as $key => $value) {
+                $produtos[$key]['dias_restantes'] = (strtotime($value['data_validade']) - strtotime(date('Y-m-d'))) / (60 * 60 * 24);
             }
         }
 
         echo $this->template->renderizar('index.html', [
             'nome_pagina' => 'Dashboard - ' . NOME_SITE,
             'rota_atual' => 'index',
-            'produtos' => $resultado,
+            'produtos' => $produtos,
+            'categorias' => $categorias
 
+        ]);
+    }
+
+    public function pesquisa()
+    {
+        $filtro = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+ 
+        $categoriaFiltro = $filtro['categoria'] ?? '';
+
+        echo "<pre>";
+        print_r($categoriaFiltro);
+
+        if (!empty($categoriaFiltro)) {
+            $produtos = (new Tab_Produtos())->buscarTodas('categoria', $categoriaFiltro)->ordem('data_validade ASC')->resultadoArray(true);
+        } else {
+            echo "Nenhuma categoria selecionada.";
+            return;
+        }
+
+        if ($produtos) {
+            foreach ($produtos as $key => $value) {
+                $produtos[$key]['dias_restantes'] = (strtotime($value['data_validade']) - strtotime(date('Y-m-d'))) / (60 * 60 * 24);
+            }
+        }
+
+        $categorias = (new Tab_Categorias())->buscarTodas()->ordem('categoria ASC')->resultadoArray(true);
+
+        
+
+        echo $this->template->renderizar('pesquisa.html', [
+            'nome_pagina' => 'Dashboard - ' . NOME_SITE,
+            'rota_atual' => 'index',
+            'produtos' => $produtos,
+            'categorias' => $categorias
         ]);
     }
     

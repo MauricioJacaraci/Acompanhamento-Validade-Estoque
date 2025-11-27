@@ -26,6 +26,9 @@ try {
       //ROTA DE VERIFICAR VALIDADE
       SimpleRouter::match(['get', 'post'], URL_SITE . 'verificarValidade', 'SiteControlador@verificarValidade');
       // ----------------------------------------------------------
+      //ROTA DE VERIFICAR VALIDADE
+      SimpleRouter::match(['get', 'post'], URL_SITE . 'pesquisa', 'SiteControlador@pesquisa');
+      // ----------------------------------------------------------
    });
 
    // Executa o direcionamento das rotas

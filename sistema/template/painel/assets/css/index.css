@@ -162,6 +162,7 @@
     font-size: 12px;
     flex-basis: 80%;
     height: 100%;
+    background-color: #d6d9d9;
 }
 
 .search{
@@ -174,6 +175,7 @@
     width: 50%;
     border-radius: 5px;
     gap: 8px;
+    cursor: pointer;
 }
 
 .container {

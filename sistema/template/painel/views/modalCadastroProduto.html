@@ -20,11 +20,9 @@
                         <select class="placeholder-categoria"  name="categoria" id="categoria" required="">
                             <option value="" disabled="" selected="">Selecione uma categoria</option>
                             <optgroup label="Categorias">
-                                <option value="Refrigerante Lata 350ml">Refrigerante Lata 350ml</option>
-                                <option value="Refrigerante 1 Litro">Refrigerante 1 Litro</option>
-                                <option value="Sucos">Sucos</option>
-                                <option value="Água Mineral">Água Mineral</option>
-                                <option value="Refrigerante 500ml">Refrigerante 500ml</option>
+                                {% for categoria in categorias %}
+                                <option value="{{ categoria.categoria }}">{{ categoria.categoria }}</option>
+                                {% endfor %}
                             </optgroup>
                         </select>
                     </div>
