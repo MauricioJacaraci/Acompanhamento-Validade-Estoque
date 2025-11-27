@@ -28,19 +28,13 @@
 /* Estilo geral do modal (overlay) */
 .modal {
     display: none;
-    /* Modal começa invisível */
     position: fixed;
-    /* Fixa o modal sobre a tela */
     z-index: 1;
-    /* Fica acima dos outros elementos */
     left: 0;
     top: 0;
-    width: 100%;
-    /* Cobre toda a largura */
-    height: 150%;
-    /* Cobre toda a altura */
+    width: 100vw;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
-    /* Fundo escuro e semi-transparente */
 }
 
 /* Estilo do conteúdo do modal */
@@ -49,7 +43,7 @@
     margin: 8% auto 0% auto;
     border: 1px solid #888;
     width: 300px;
-    height: 30%;
+    height: 35%;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     padding: 1px;
@@ -94,6 +88,7 @@
     border-top-right-radius: 8px;
     position: relative;
     height: 100%;
+    width: 100%;
 }
 
 .titulo {
@@ -104,6 +99,7 @@
     padding: 5px 0 5px 0;
     font-size: 20px;
     height: 11%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -114,86 +110,109 @@
     justify-content: center;
     align-items: center;
     background-color: #ffffff;
-    height: 69%;
+    height: 66%;
+    width: 100%;
 }
 
 
 .infoProduto1 {
     background-color: #ffffff;
     height: 100%;
-    flex-basis: 90%;
+    width: 100%;
+
     display: flex;
     flex-direction: column;
-    gap: 10px;
     justify-content: center;
     align-items: center;
+
+    gap: 10px;
 }
 
 .categoria {
     background-color: #000000;
-    border-radius: 8px;
-    padding-left: 10px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    width: 94%;
-    gap: 5px;
-}
-.label-categoria {
-    background-color: rgba(0, 0, 0, 0);
-    font-size: 12px;
-    flex-basis: 40%;
     border-radius: 5px;
-    height: 100%;
+    padding-left: 10px;
+    border: 1px solid black;
+    height: 10%;
+    width: 91%;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
+    gap: 10px;
+}
+.label-categoria {
+    background-color: rgba(0, 0, 0, 0);
     color: white;
+
+    font-size: 12px;
+    height: 100%;
+    width: 40%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 .placeholder-categoria {
     font-size: 12px;
-    flex-basis: 60%;
-    border-radius: 5px;
     height: 100%;
-    border: 1px solid black;
+    width: 60%;   
+    
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .infoProduto2 {
     background-color: #000000;
+
     width: 94%;
     height: 10%;
+    border-radius: 5px;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
+
+    border: 1px solid black;
+    
     gap: 5px;
-    padding: 0 0 0 5px;
 }
 
 .infoProduto2>label {
     background-color: #000000;
     color: white;
-    height: 100%;
     font-size: 12px;
+
+    height: 100%;
+    width: 40%;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-basis: 40%;
+
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 .infoProduto2>input {
     background-color: #ffffff;
     color: #000000;
+    font-size: 12px;
+    padding-left: 5px;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 12px;
-    width: 61%;
+    
+    width: 60%;
     height: 100%;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding-left: 10px;
-    flex-basis: 60%;
+    
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 

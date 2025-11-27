@@ -49,17 +49,14 @@ class SiteControlador extends Controlador
     public function pesquisa()
     {
         $filtro = filter_input_array(INPUT_POST, FILTER_DEFAULT);
- 
-        $categoriaFiltro = $filtro['categoria'] ?? '';
 
-        echo "<pre>";
-        print_r($categoriaFiltro);
-
-        if (!empty($categoriaFiltro)) {
-            $produtos = (new Tab_Produtos())->buscarTodas('categoria', $categoriaFiltro)->ordem('data_validade ASC')->resultadoArray(true);
+        if (!empty($filtro)) {
+            $produtos = (new Tab_Produtos())
+                ->buscarTodas("categoria = :cat", "cat={$filtro['categoria']}")
+                ->ordem('data_validade ASC')
+                ->resultadoArray(true);
         } else {
-            echo "Nenhuma categoria selecionada.";
-            return;
+            $produtos = (new Tab_Produtos())->buscarTodas()->ordem('data_validade ASC')->resultado(true);
         }
 
         if ($produtos) {
@@ -72,7 +69,7 @@ class SiteControlador extends Controlador
 
         
 
-        echo $this->template->renderizar('pesquisa.html', [
+        echo $this->template->renderizar('index.html', [
             'nome_pagina' => 'Dashboard - ' . NOME_SITE,
             'rota_atual' => 'index',
             'produtos' => $produtos,
