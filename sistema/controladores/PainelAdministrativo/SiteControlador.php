@@ -30,6 +30,7 @@ class SiteControlador extends Controlador
         
         $produtos = (new Tab_Produtos())->buscarTodas()->ordem('data_validade ASC')->resultado(true);
         $categorias = (new Tab_Categorias())->buscarTodas()->ordem('categoria ASC')->resultadoArray(true);
+        $categorias_produtos = (new Tab_Produtos())->buscarTodas()->ordem('categoria ASC')->resultadoArray(true);
 
         if($produtos){
             foreach ($produtos as $key => $value) {
@@ -41,7 +42,8 @@ class SiteControlador extends Controlador
             'nome_pagina' => 'Dashboard - ' . NOME_SITE,
             'rota_atual' => 'index',
             'produtos' => $produtos,
-            'categorias' => $categorias
+            'categorias' => $categorias,
+            'categorias_produtos' => $categorias_produtos
 
         ]);
     }
@@ -66,6 +68,7 @@ class SiteControlador extends Controlador
         }
 
         $categorias = (new Tab_Categorias())->buscarTodas()->ordem('categoria ASC')->resultadoArray(true);
+        $categorias_produtos = (new Tab_Produtos())->buscarTodas()->ordem('categoria ASC')->resultadoArray(true);
 
         
 
@@ -73,7 +76,8 @@ class SiteControlador extends Controlador
             'nome_pagina' => 'Dashboard - ' . NOME_SITE,
             'rota_atual' => 'index',
             'produtos' => $produtos,
-            'categorias' => $categorias
+            'categorias' => $categorias,
+            'categorias_produtos' => $categorias_produtos
         ]);
     }
     

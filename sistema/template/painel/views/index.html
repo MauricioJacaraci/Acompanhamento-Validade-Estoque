@@ -11,7 +11,7 @@
         <select class="placeholder-categoria1" name="categoria" id="categoria">
             <option value="" disabled selected>Selecione uma categoria</option>
             <optgroup label="Categorias">
-                {% for categoria in categorias %}
+                {% for categoria in categorias_produtos %}
                 <option value="{{ categoria.categoria }}">{{ categoria.categoria }}</option>
                 {% endfor %}
             </optgroup>
