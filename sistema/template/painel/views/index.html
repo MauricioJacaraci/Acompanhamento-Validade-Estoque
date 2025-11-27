@@ -12,7 +12,7 @@
             <option value="" disabled selected>Selecione uma categoria</option>
             <optgroup label="Categorias">
                 {% for categoria in categorias_produtos %}
-                <option value="{{ categoria.categoria }}">{{ categoria.categoria }}</option>
+                <option value="{{ categoria }}">{{ categoria }}</option>
                 {% endfor %}
             </optgroup>
         </select>

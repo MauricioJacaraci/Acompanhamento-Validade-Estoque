@@ -32,6 +32,16 @@ class SiteControlador extends Controlador
         $categorias = (new Tab_Categorias())->buscarTodas()->ordem('categoria ASC')->resultadoArray(true);
         $categorias_produtos = (new Tab_Produtos())->buscarTodas()->ordem('categoria ASC')->resultadoArray(true);
 
+        // pega só o campo "categoria"
+        $categorias_unicas = array_column($categorias_produtos, 'categoria');
+
+        // remove duplicados
+        $categorias_unicas = array_unique($categorias_unicas);
+
+        // reindexa o array
+        $categorias_unicas = array_values($categorias_unicas);
+
+
         if($produtos){
             foreach ($produtos as $key => $value) {
                 $produtos[$key]['dias_restantes'] = (strtotime($value['data_validade']) - strtotime(date('Y-m-d'))) / (60 * 60 * 24);
@@ -43,7 +53,7 @@ class SiteControlador extends Controlador
             'rota_atual' => 'index',
             'produtos' => $produtos,
             'categorias' => $categorias,
-            'categorias_produtos' => $categorias_produtos
+            'categorias_produtos' => $categorias_unicas
 
         ]);
     }
@@ -70,6 +80,15 @@ class SiteControlador extends Controlador
         $categorias = (new Tab_Categorias())->buscarTodas()->ordem('categoria ASC')->resultadoArray(true);
         $categorias_produtos = (new Tab_Produtos())->buscarTodas()->ordem('categoria ASC')->resultadoArray(true);
 
+        // pega só o campo "categoria"
+        $categorias_unicas = array_column($categorias_produtos, 'categoria');
+
+        // remove duplicados
+        $categorias_unicas = array_unique($categorias_unicas);
+
+        // reindexa o array
+        $categorias_unicas = array_values($categorias_unicas);
+
         
 
         echo $this->template->renderizar('index.html', [
@@ -77,7 +96,7 @@ class SiteControlador extends Controlador
             'rota_atual' => 'index',
             'produtos' => $produtos,
             'categorias' => $categorias,
-            'categorias_produtos' => $categorias_produtos
+            'categorias_produtos' => $categorias_unicas
         ]);
     }
     
