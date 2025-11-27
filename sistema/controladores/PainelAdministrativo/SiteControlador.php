@@ -152,19 +152,43 @@ class SiteControlador extends Controlador
 
         if ($resultado) {
             foreach ($resultado as $value) {
-                $diasRestantes = (strtotime($value['data_validade']) - strtotime(date('Y-m-d'))) / (60 * 60 * 24);
+                $diasRestantes = (strtotime($value['data_validade']) - strtotime(date('Y-m-d'))) / 86400;
                 $diasRestantes = (int) $diasRestantes;
 
-                // Filtra entre 1 e 15 dias
-                if ($diasRestantes >= 10 && $diasRestantes <= 15) {
+                // só exibe dias múltiplos de 5
+                if ($diasRestantes > 0 && $diasRestantes % 5 == 0 && $diasRestantes <= 40) {
                     $value['dias_restantes'] = $diasRestantes;
                     $produtosAviso[] = $value;
                 }
             }
         }
 
-        header('Content-Type: application/json; charset=utf-8');
-        echo json_encode($produtosAviso, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        // Se não tiver produtos, retorna aviso simples
+        if (empty($produtosAviso)) {
+            echo "Nenhum produto dentro do período de aviso.";
+            exit;
+        }
+
+        // Montar mensagem final
+        $mensagem  = "⚠️ *ALERTA DE VALIDADE* ⚠️\n\n";
+        $mensagem .= "*Os produtos abaixo estão dentro do período de aviso (40 dias / alertas a cada 5 dias):*\n\n";
+
+        foreach ($produtosAviso as $p) {
+            $mensagem .= "• Produto: *{$p['produto']}*\n";
+            $mensagem .= "  Categoria: {$p['categoria']}\n";
+            $mensagem .= "  Quantidade: *{$p['quantidade']} unidades*\n";
+            $mensagem .= "  Vencimento: " . date('d/m/Y', strtotime($p['data_validade'])) . "\n";
+            $mensagem .= "  Vence em: *{$p['dias_restantes']} dias*\n\n";
+        }
+
+        $mensagem .= "✔️ Recomendações:\n";
+        $mensagem .= "- Priorizar a venda ou utilização desses produtos.\n";
+        $mensagem .= "- Destacar no estoque se necessário.\n";
+        $mensagem .= "- Registrar caso algum item seja descartado.\n\n";
+        $mensagem .= "📆 Notificação gerada automaticamente às " . date('H:i') . ".";
+
+        header('Content-Type: text/plain; charset=utf-8');
+        echo $mensagem;
         exit;
     }
 }
